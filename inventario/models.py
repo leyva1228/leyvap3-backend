@@ -16,6 +16,10 @@ class TipoEquipo(models.Model):
     departamento = models.CharField(
         max_length=50, choices=Departamento.choices, default=Departamento.GENERAL
     )
+    icono = models.ImageField(
+        upload_to='tipos_icono/',
+        blank=True, null=True,
+    )
 
     def __str__(self):
         return self.nombre
