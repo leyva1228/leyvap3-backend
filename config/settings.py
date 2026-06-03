@@ -27,13 +27,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     # Librerías de terceros instaladas
-    'rest_framework',             # Para la API
-    'corsheaders',                # Para permitir conexión con React
-    'inventario',         # Tu App creada
+    'rest_framework',             
+    'corsheaders',               
+    'inventario',        
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware', # Debe ir al principio
+    'corsheaders.middleware.CorsMiddleware', 
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -111,8 +111,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = 'es-es'  # Cambiado a español
-TIME_ZONE = 'UTC'        # Puedes poner 'America/Lima' o tu zona horaria local
+LANGUAGE_CODE = 'es-es' 
+TIME_ZONE = 'UTC'     
 
 USE_I18N = True
 USE_TZ = True
@@ -132,16 +132,14 @@ STORAGES = {
 
 
 # Media Files (Imágenes subidas por usuarios)
-# Necesario porque instalamos Pillow y usaremos ImageField
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 
 # Configuración de CORS (React + Django)
-# Permite que tu frontend en el puerto 5173 se comunique con este backend
+
 CORS_ALLOWED_ORIGINS = os.environ.get('DJANGO_CORS_ALLOWED_ORIGINS', 'http://localhost:5173,http://127.0.0.1:5173').split(',')
 
-# Opcional: Permitir cookies o credenciales si fueran necesarias
 CORS_ALLOW_CREDENTIALS = True
 
 # Configuración de Django Rest Framework
@@ -166,7 +164,6 @@ REST_FRAMEWORK = {
 }
 
 # Security Headers
-# Necesario detrás del proxy de Railway para evitar bucle SSL
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 SECURE_HSTS_SECONDS = os.environ.get('DJANGO_SECURE_HSTS_SECONDS', '0') == '0' and 0 or 31536000

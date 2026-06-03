@@ -8,6 +8,7 @@ services:
     buildCommand: |
       pip install -r requirements.txt
       python manage.py migrate
+      python manage.py create_superusers
       python manage.py collectstatic --noinput
 
     startCommand: gunicorn config.wsgi:application --bind 0.0.0.0:$PORT --workers 2 --timeout 120
@@ -26,10 +27,10 @@ services:
         value: ".onrender.com,localhost,127.0.0.1"
 
       - key: DJANGO_CSRF_TRUSTED_ORIGINS
-        value: "https://leyvap3-backend.onrender.com"
+        value: "http://localhost:5173,https://leyvap3-frontend.vercel.app"
 
       - key: DJANGO_CORS_ALLOWED_ORIGINS
-        value: "http://localhost:5173,https://leyvap3-frontend.onrender.com"
+        value: "https://leyvap3-backend.onrender.com,https://leyvap3-frontend.vercel.app"
 
       # Render inyectará DATABASE_URL automáticamente
       # al enlazar la base de datos PostgreSQL
