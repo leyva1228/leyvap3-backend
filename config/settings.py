@@ -31,8 +31,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware', # Debe ir al principio o después de Security
+    'corsheaders.middleware.CorsMiddleware', # Debe ir al principio
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -114,7 +115,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # Ruta donde se guardan los archivos estáticos al hacer collectstatic (Deploy)
-STATIC_ROOT = BASE_DIR / 'staticfiles' 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STORAGES = {
+    'staticfiles': {
+        'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
+    },
+}
 
 
 # Media Files (Imágenes subidas por usuarios)
