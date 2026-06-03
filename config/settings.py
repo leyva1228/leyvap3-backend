@@ -160,6 +160,9 @@ REST_FRAMEWORK = {
 }
 
 # Security Headers
+# Necesario detrás del proxy de Railway para evitar bucle SSL
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
 SECURE_HSTS_SECONDS = os.environ.get('DJANGO_SECURE_HSTS_SECONDS', '0') == '0' and 0 or 31536000
 SECURE_HSTS_INCLUDE_SUBDOMAINS = os.environ.get('DJANGO_DEBUG', 'True') != 'True'
 SECURE_HSTS_PRELOAD = os.environ.get('DJANGO_DEBUG', 'True') != 'True'
