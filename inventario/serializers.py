@@ -13,3 +13,4 @@ class EquipoSerializer(serializers.ModelSerializer):
         model = Equipo
         fields = ['id', 'nombre', 'codigo', 'estado', 'imagen', 'tipo_equipo',
                   'tipo_equipo_nombre', 'fecha_adquisicion']
+        

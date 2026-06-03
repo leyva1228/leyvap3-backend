@@ -10,10 +10,10 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-37$7lstl)dct$q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
-# Ajustamos ALLOWED_HOSTS para permitir acceso local y a la red si es necesario
+# Ajustamos ALLOWED_HOSTS
 ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
-# Orígenes confiables para CSRF (necesario para Railway admin)
+# Orígenes confiables para CSRF 
 CSRF_TRUSTED_ORIGINS = os.environ.get('DJANGO_CSRF_TRUSTED_ORIGINS', 'http://localhost:8000').split(',')
 
 # Application definition
@@ -25,8 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
-    # Librerías de terceros instaladas
+
     'rest_framework',             
     'corsheaders',
     'cloudinary_storage',
@@ -124,7 +123,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = '/static/'
-# Ruta donde se guardan los archivos estáticos al hacer collectstatic (Deploy)
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 CLOUDINARY_CLOUD_NAME = os.environ.get('CLOUDINARY_CLOUD_NAME')
 if CLOUDINARY_CLOUD_NAME:
@@ -152,7 +150,7 @@ else:
     }
 
 
-# Media Files (Imágenes subidas por usuarios)
+# Media Files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
