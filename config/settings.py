@@ -11,7 +11,10 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-37$7lstl)dct$q
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
 # Ajustamos ALLOWED_HOSTS para permitir acceso local y a la red si es necesario
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+
+# Orígenes confiables para CSRF (necesario para Railway admin)
+CSRF_TRUSTED_ORIGINS = os.environ.get('DJANGO_CSRF_TRUSTED_ORIGINS', 'http://localhost:8000').split(',')
 
 # Application definition
 
@@ -130,10 +133,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # Configuración de CORS (React + Django)
 # Permite que tu frontend en el puerto 5173 se comunique con este backend
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-]
+CORS_ALLOWED_ORIGINS = os.environ.get('DJANGO_CORS_ALLOWED_ORIGINS', 'http://localhost:5173,http://127.0.0.1:5173').split(',')
 
 # Opcional: Permitir cookies o credenciales si fueran necesarias
 CORS_ALLOW_CREDENTIALS = True
