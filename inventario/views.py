@@ -1,4 +1,3 @@
-import os
 from django.conf import settings
 from django.db.models.deletion import ProtectedError
 from django.http import FileResponse, Http404, JsonResponse
@@ -33,8 +32,10 @@ class EquipoViewSet(viewsets.ModelViewSet):
 
 
 def media_serve(request, path):
+    from django.http import FileResponse, Http404
+    import os
     file_path = os.path.join(settings.MEDIA_ROOT, path)
     if not os.path.exists(file_path):
-        raise Http404(f"File not found: {file_path}")
+        raise Http404()
     return FileResponse(open(file_path, 'rb'))
     
