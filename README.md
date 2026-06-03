@@ -18,8 +18,8 @@ API REST desarrollada con **Django + Django Rest Framework** para gestionar un i
 
 - **Django 5** con Django Rest Framework
 - **PostgreSQL** como base de datos (alojada en Render)
+- **Cloudinary** para almacenamiento de imágenes
 - Desplegado en **Render** via Gunicorn
-- Imágenes servidas desde `/media/`
 
 ## Modelos
 
