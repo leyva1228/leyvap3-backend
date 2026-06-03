@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Departamento(models.TextChoices):
     GENERAL = 'GENERAL', 'General'
     SISTEMAS = 'SISTEMAS', 'Sistemas'
@@ -11,7 +10,6 @@ class Departamento(models.TextChoices):
     INVESTIGACION = 'INVESTIGACION', 'Investigación'
     REDES = 'REDES', 'Redes'
     MANTENIMIENTO = 'MANTENIMIENTO', 'Mantenimiento'
-
 
 class TipoEquipo(models.Model):
     nombre = models.CharField(max_length=100)
@@ -52,8 +50,7 @@ class Equipo(models.Model):
     tipo_equipo = models.ForeignKey(
         TipoEquipo, on_delete=models.PROTECT, related_name='equipos'
     )
-    
-    # Campo extra para cumplir requisitos
+
     fecha_adquisicion = models.DateField(blank=True, null=True)
 
     def __str__(self):
