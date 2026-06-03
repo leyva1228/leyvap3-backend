@@ -2,10 +2,9 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
-from django.views.static import serve
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from inventario.views import TipoEquipoViewSet, EquipoViewSet
+from inventario.views import TipoEquipoViewSet, EquipoViewSet, media_serve
 
 router = DefaultRouter()
 router.register(r'tipos', TipoEquipoViewSet)
@@ -22,6 +21,6 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 else:
     urlpatterns += [
-        re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+        re_path(r'^media/(?P<path>.*)$', media_serve),
     ]
     

@@ -1,5 +1,7 @@
+import os
+from django.conf import settings
 from django.db.models.deletion import ProtectedError
-from django.http import JsonResponse
+from django.http import FileResponse, Http404, JsonResponse
 from rest_framework import filters, status, viewsets
 from .models import TipoEquipo, Equipo
 from .serializers import TipoEquipoSerializer, EquipoSerializer
@@ -28,4 +30,11 @@ class EquipoViewSet(viewsets.ModelViewSet):
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['nombre', 'codigo', 'estado', 'tipo_equipo__nombre']
     ordering_fields = ['nombre', 'codigo', 'estado', 'fecha_adquisicion']
+
+
+def media_serve(request, path):
+    file_path = os.path.join(settings.MEDIA_ROOT, path)
+    if not os.path.exists(file_path):
+        raise Http404(f"File not found: {file_path}")
+    return FileResponse(open(file_path, 'rb'))
     
