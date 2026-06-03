@@ -25,7 +25,6 @@ INSTALLED_APPS = [
     
     # Librerías de terceros instaladas
     'rest_framework',             # Para la API
-    'rest_framework.authtoken',   # Token authentication
     'corsheaders',                # Para permitir conexión con React
     'inventario',         # Tu App creada
 ]
@@ -145,7 +144,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
