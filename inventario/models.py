@@ -1,4 +1,3 @@
-from django.core.validators import validate_image_file_extension
 from django.db import models
 
 
@@ -40,7 +39,6 @@ class Equipo(models.Model):
     imagen = models.ImageField(
         upload_to='equipos_img/',
         blank=True, null=True,
-        validators=[validate_image_file_extension]
     )
 
     tipo_equipo = models.ForeignKey(

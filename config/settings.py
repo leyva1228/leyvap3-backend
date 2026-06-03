@@ -125,6 +125,9 @@ STATIC_URL = '/static/'
 # Ruta donde se guardan los archivos estáticos al hacer collectstatic (Deploy)
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STORAGES = {
+    'default': {
+        'BACKEND': 'django.core.files.storage.FileSystemStorage',
+    },
     'staticfiles': {
         'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
     },
