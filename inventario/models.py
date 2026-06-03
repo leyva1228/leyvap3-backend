@@ -7,6 +7,10 @@ class Departamento(models.TextChoices):
     CONTABILIDAD = 'CONTABILIDAD', 'Contabilidad'
     LOGISTICA = 'LOGISTICA', 'Logística'
     OPERACIONES = 'OPERACIONES', 'Operaciones'
+    BIOMEDICA = 'BIOMEDICA', 'Biomédica'
+    INVESTIGACION = 'INVESTIGACION', 'Investigación'
+    REDES = 'REDES', 'Redes'
+    MANTENIMIENTO = 'MANTENIMIENTO', 'Mantenimiento'
 
 
 class TipoEquipo(models.Model):

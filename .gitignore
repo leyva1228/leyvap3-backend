@@ -9,5 +9,4 @@ media/
 local_settings.py
 .DS_Store
 ruvector.db
-cyber-neo-report-*.md
 .swarm/
