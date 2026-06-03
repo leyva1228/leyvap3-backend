@@ -68,19 +68,25 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': os.environ.get('DB_ENGINE', 'django.db.backends.mysql'),
-        'NAME': os.environ.get('MYSQLDATABASE') or os.environ.get('DB_NAME', 'leyvap3-db'),
-        'USER': os.environ.get('MYSQLUSER') or os.environ.get('DB_USER', 'root'),
-        'PASSWORD': os.environ.get('MYSQLPASSWORD') or os.environ.get('DB_PASSWORD', ''),
-        'HOST': os.environ.get('MYSQLHOST') or os.environ.get('DB_HOST', 'localhost'),
-        'PORT': os.environ.get('MYSQLPORT') or os.environ.get('DB_PORT', '3306'),
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-        },
+import dj_database_url
+
+DATABASE_URL = os.environ.get('DATABASE_URL')
+if DATABASE_URL:
+    DATABASES = {'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=600)}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': os.environ.get('DB_ENGINE', 'django.db.backends.mysql'),
+            'NAME': os.environ.get('MYSQLDATABASE') or os.environ.get('DB_NAME', 'leyvap3-db'),
+            'USER': os.environ.get('MYSQLUSER') or os.environ.get('DB_USER', 'root'),
+            'PASSWORD': os.environ.get('MYSQLPASSWORD') or os.environ.get('DB_PASSWORD', ''),
+            'HOST': os.environ.get('MYSQLHOST') or os.environ.get('DB_HOST', 'localhost'),
+            'PORT': os.environ.get('MYSQLPORT') or os.environ.get('DB_PORT', '3306'),
+            'OPTIONS': {
+                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            },
+        }
     }
-}
 
 
 # Password validation
